@@ -23,4 +23,9 @@ WHILE NOT NameValid:
 		OUTPUT("Name Valid")
 		NameValid <- True
 		RETURN PlayerName
-	
+
+
+##Question 3(b):
+
+1. Which function is responsible for adding scores to the table?
+ UpdateRecentScores(RecentScores, Score) function

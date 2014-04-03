@@ -64,6 +64,7 @@ def GetSuit(SuitNo):
     Suit = 'Spades'
   return Suit
 
+    
 def DisplayMenu():
   print()
   print('MAIN MENU')
@@ -130,10 +131,20 @@ def IsNextCardHigher(LastCard, NextCard):
   return Higher
 
 def GetPlayerName():
-  print()
-  PlayerName = input('Please enter your name: ')
-  print()
-  return PlayerName
+  NameValid = False
+  while not NameValid:
+    print()
+    PlayerName = input('Please enter your name: ')
+    print()
+    if len(PlayerName) == 0:
+      print("Please enter a Valid Name.")
+      print()
+      NameValid = False
+    elif len(PlayerName) > 0:
+      NameValid = True
+      print("Name Valid")
+      print()
+      return PlayerName
 
 def GetChoiceFromUser():
   YesList = ['Y', 'y', 'Yes', 'yes']

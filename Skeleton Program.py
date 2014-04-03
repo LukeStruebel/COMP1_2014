@@ -192,21 +192,36 @@ def DisplayRecentScores(RecentScores):
   print()
 
 def UpdateRecentScores(RecentScores, Score):
-  PlayerName = GetPlayerName()
-  FoundSpace = False
-  Count = 1
-  while (not FoundSpace) and (Count <= NO_OF_RECENT_SCORES):
-    if RecentScores[Count].Name == '':
-      FoundSpace = True
-    else:
-      Count = Count + 1
-  if not FoundSpace:
-    for Count in range(1, NO_OF_RECENT_SCORES):
-      RecentScores[Count].Name = RecentScores[Count + 1].Name
-      RecentScores[Count].Score = RecentScores[Count + 1].Score
-    Count = NO_OF_RECENT_SCORES
-  RecentScores[Count].Name = PlayerName
-  RecentScores[Count].Score = Score
+  AddScoreValid = False
+  while not AddScoreValid:
+    print()
+    AddScore = input("Do you want to add your score to the table? (y or n): ")
+    if (AddScore != 'n') and (AddScore != 'y'):
+      print()
+      print("{0} is not a Valid input, please enter 'y' or 'n'.".format(AddScore))
+      AddScoreValid = False
+    elif AddScore == 'n':
+      print()
+      print("Your score was not added to the table.")
+      AddScoreValid = True
+    elif AddScore == 'y':
+      print()
+      AddScoreValid = True
+      PlayerName = GetPlayerName()
+      FoundSpace = False
+      Count = 1
+      while (not FoundSpace) and (Count <= NO_OF_RECENT_SCORES):
+        if RecentScores[Count].Name == '':
+          FoundSpace = True
+        else:
+          Count = Count + 1
+      if not FoundSpace:
+        for Count in range(1, NO_OF_RECENT_SCORES):
+          RecentScores[Count].Name = RecentScores[Count + 1].Name
+          RecentScores[Count].Score = RecentScores[Count + 1].Score
+        Count = NO_OF_RECENT_SCORES
+      RecentScores[Count].Name = PlayerName
+      RecentScores[Count].Score = Score
 
 def PlayGame(Deck, RecentScores):
   LastCard = TCard()
